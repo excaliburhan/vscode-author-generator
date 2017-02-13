@@ -1,35 +1,56 @@
 {
-    "name": "vscode-author-generator",
-    "displayName": "vscode-author-generator",
-    "description": "A Tool To Generate Author Info",
-    "version": "0.0.1",
-    "publisher": "edwardhjp",
-    "engines": {
-        "vscode": "^1.5.0"
-    },
-    "categories": [
-        "Other"
+  "name": "vscode-author-generator",
+  "displayName": "vscode-author-generator",
+  "description": "A Tool To Generate Author Info",
+  "version": "0.0.1",
+  "publisher": "edwardhjp",
+  "engines": {
+    "vscode": "^1.5.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.generateAuthorInfo"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.generateAuthorInfo",
+        "title": "Generate Author Info"
+      }
     ],
-    "activationEvents": [
-        "onCommand:extension.sayHello"
-    ],
-    "main": "./extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
-    },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "eslint": "^3.6.0",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+    "configuration": {
+      "type": "object",
+      "title": "author generator configuration",
+      "properties": {
+        "author-generator.author": {
+          "type": "string",
+          "default": "[author]",
+          "description": "author name"
+        },
+        "author-generator.email": {
+          "type": "string",
+          "default": "[example@mail.com]",
+          "description": "email address"
+        }
+      }
     }
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.40",
+    "eslint": "^3.6.0",
+    "mocha": "^2.3.3",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0"
+  },
+  "dependencies": {
+    "moment": "^2.17.1"
+  }
 }
