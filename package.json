@@ -2,7 +2,7 @@
   "name": "vscode-author-generator",
   "displayName": "vscode-author-generator",
   "description": "A Tool To Generate Author Info",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "edwardhjp",
   "engines": {
     "vscode": "^1.5.0"

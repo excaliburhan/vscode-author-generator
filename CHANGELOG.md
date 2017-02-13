@@ -1,6 +1,10 @@
+### V0.0.3
+
+- [Feature] add `example.gif` to README.md
+
 ### V0.0.2
 
-- [FIX] remove whitespaces in template files
+- [Fix] remove whitespaces in template files
 
 ### V0.0.1
 
