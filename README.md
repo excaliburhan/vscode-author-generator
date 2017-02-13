@@ -2,6 +2,8 @@
 
 A tool to generate Custom Author Info at the top of your file.
 
+![gif](https://raw.githubusercontent.com/excaliburhan/vscode-author-generator/master/example.gif)
+
 ## Installation
 
 Press `F1` in VSCode, type `ext install` and then look for `vscode-author-generator`.
