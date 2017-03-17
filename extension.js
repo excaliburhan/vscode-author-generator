@@ -9,20 +9,16 @@ let vscode = require('vscode')
 let generator = require('./generator.js')
 
 function activate(context) {
-  let authorGenerator = vscode.commands.registerCommand('extension.generateAuthorInfo', () => {
-    let editor = vscode.window.activeTextEditor
-    editor.edit((builder) => {
-      try {
-        let document = editor._documentData._document
-        let tplText = generator.getTplText(document)
-        builder.insert(new vscode.Position(0, 0), tplText)
-      } catch (error) {
-        vscode.window.showErrorMessage(error.message)
-      }
-    })
+  let initAuthor = vscode.commands.registerCommand('extension.generateAuthorInfo', () => {
+    generator.initInfo()
   })
 
-  context.subscriptions.push(authorGenerator)
+  let updateAuthor = vscode.commands.registerCommand('extension.updateAuthorInfo', () => {
+    generator.updateInfo()
+  })
+
+  context.subscriptions.push(initAuthor)
+  context.subscriptions.push(updateAuthor)
 }
 exports.activate = activate
 

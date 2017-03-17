@@ -1,3 +1,7 @@
+### V0.0.4
+
+- [Feature] add `Update Auth Info` contribute command
+
 ### V0.0.3
 
 - [Feature] add `example.gif` to README.md

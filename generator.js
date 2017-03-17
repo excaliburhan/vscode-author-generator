@@ -11,6 +11,40 @@ let fs = require('fs')
 let moment = require('moment')
 
 module.exports = {
+  initInfo() {
+    let editor = vscode.window.activeTextEditor
+    editor.edit((builder) => {
+      try {
+        let document = editor._documentData._document
+        let tplText = this.getTplText(document)
+        builder.insert(new vscode.Position(0, 0), tplText)
+      } catch (error) {
+        vscode.window.showErrorMessage(error.message)
+      }
+    })
+  },
+  updateInfo() {
+    let editor = vscode.window.activeTextEditor
+    let range = new vscode.Range(new vscode.Position(0, 0), new vscode.Position(21, 0))
+    let text = editor.document.getText(range)
+    let modifiedPos = editor.document.positionAt(text.indexOf('@modify date '))
+    let modifiedLine = modifiedPos.line
+    let line = editor.document.lineAt(modifiedLine)
+    let lineText = line.text
+    let lineTextArr = lineText.split('@modify date ')
+    let replaceText = ''
+    for (let i = 0; i < lineTextArr.length - 1; i++) {
+      replaceText += lineTextArr[i]
+    }
+    replaceText += '@modify date ' + this.getDate()
+    editor.edit((builder) => {
+      try {
+        builder.replace(line.range, replaceText)
+      } catch (error) {
+        vscode.window.showErrorMessage(error.message)
+      }
+    })
+  },
   getFileType(document) {
     let fileInfo = document.fileName.split('.')
     return fileInfo.length > 1 ? fileInfo.pop() : 'default'
@@ -34,7 +68,7 @@ module.exports = {
       text = fs.readFileSync(tplPath, 'utf-8')
       text = text.replace(/\[author\]/, config.author)
                  .replace(/\[email\]/, config.email)
-                 .replace(/\[date\]/, config.date)
+                 .replace(/\[date\]/g, config.date)
     } catch (error) {
       vscode.window.showErrorMessage(error.message)
     }
@@ -51,5 +85,5 @@ module.exports = {
   },
   getDate() {
     return moment().format('YYYY-MM-DD hh:mm:ss')
-  }
+  },
 }
