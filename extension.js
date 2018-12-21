@@ -1,9 +1,10 @@
 /**
  * @author xiaoping
  * @email edwardhjp@gmail.com
- * @date 2017-02-13 11:51:32
- * @desc [description] 
-*/
+ * @create date 2017-02-13 11:51:32
+ * @modify date 2018-12-21 12:37:18
+ * @desc [extension file]
+ */
 
 let vscode = require('vscode')
 let generator = require('./generator.js')

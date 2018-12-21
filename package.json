@@ -2,12 +2,12 @@
   "name": "vscode-author-generator",
   "displayName": "vscode-author-generator",
   "description": "A Tool To Generate Author Info",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "publisher": "edwardhjp",
   "author": "xiaoping(edwardhjp@gmail.com)",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/excaliburhan/vscode-author-generator.git"
+    "type": "git",
+    "url": "https://github.com/excaliburhan/vscode-author-generator.git"
   },
   "engines": {
     "vscode": "^1.5.0"
@@ -31,6 +31,12 @@
         "title": "Update Author Info"
       }
     ],
+    "keybindings": {
+      "command": "extension.updateAuthorInfo",
+      "key": "ctrl+u",
+      "mac": "cmd+u",
+      "when": "editorTextFocus"
+    },
     "configuration": {
       "type": "object",
       "title": "author generator configuration",
