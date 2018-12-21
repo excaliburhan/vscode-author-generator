@@ -1,9 +1,10 @@
 /**
- * @author xiaoping
- * @email edwardhjp@gmail.com
- * @date 2017-02-10 13:10:00
- * @desc [description] 
-*/
+ * @author 燃堂(xiaoping)
+ * @email rantang.hjp@alibaba-inc.com
+ * @create date 2017-02-10 13:10:00
+ * @modify date 2018-12-21 12:29:25
+ * @desc [generator file]
+ */
 
 let vscode = require('vscode')
 let path = require('path')
@@ -66,9 +67,10 @@ module.exports = {
     let tplPath = this.getTplPath(type)
     try {
       text = fs.readFileSync(tplPath, 'utf-8')
-      text = text.replace(/\[author\]/, config.author)
-                 .replace(/\[email\]/, config.email)
-                 .replace(/\[date\]/g, config.date)
+      text = text
+        .replace(/\[author\]/, config.author)
+        .replace(/\[email\]/, config.email)
+        .replace(/\[date\]/g, config.date)
     } catch (error) {
       vscode.window.showErrorMessage(error.message)
     }
@@ -85,5 +87,5 @@ module.exports = {
   },
   getDate() {
     return moment().format('YYYY-MM-DD HH:mm:ss')
-  },
+  }
 }

@@ -1,3 +1,11 @@
+### V0.0.7
+
+- [Feature] add `cmd+u` keybings for quick update
+
+### V0.0.5
+
+- [Fix] fix time format
+
 ### V0.0.4
 
 - [Feature] add `Update Auth Info` contribute command
