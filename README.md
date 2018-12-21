@@ -12,7 +12,7 @@ Press `F1` in VSCode, type `ext install` and then look for `vscode-author-genera
 
 - Support multiple templates, `js`, `css`, `html/htm` file types are supported for now.
 - Support custom infomation, `author name`, `email`, `date` info is supported for now.
-- Add `cmd+u` keybings for quick update.
+- Add `cmd+u` keybindings for quick update.
 
 ## Usage
 
