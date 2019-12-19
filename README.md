@@ -18,7 +18,7 @@ Press `F1` in VSCode, type `ext install` and then look for `vscode-author-genera
 
 ### Before Use
 
-- `Preferences` -> `Settings`, add `author-generator.author` and `author-generator.email`.
+- `Preferences` -> `Settings`, add `author-generator.author` and `author-generator.email`. `author-generator.dateFormat` will change your date format(default format is `YYYY-MM-DD HH:mm:ss`)
 
 ### Commands
 

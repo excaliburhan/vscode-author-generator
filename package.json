@@ -2,7 +2,7 @@
   "name": "vscode-author-generator",
   "displayName": "vscode-author-generator",
   "description": "A Tool To Generate Author Info",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "publisher": "edwardhjp",
   "author": "xiaoping(edwardhjp@gmail.com)",
   "repository": {
@@ -50,6 +50,11 @@
           "type": "string",
           "default": "[example@mail.com]",
           "description": "email address"
+        },
+        "author-generator.dateFormat": {
+          "type": "string",
+          "default": "YYYY-MM-DD HH:mm:ss",
+          "description": "date format string based on moment.js"
         }
       }
     }
@@ -60,14 +65,15 @@
     "build": "vsce package",
     "publish": "vsce publish"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.21",
+    "eslint": "^6.7.2",
+    "mocha": "^6.2.2",
+    "typescript": "^3.7.3",
+    "vscode": "^1.1.36"
+  },
   "dependencies": {
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.18",
-    "eslint": "^5.10.0",
-    "mocha": "^5.2.0",
-    "moment": "^2.17.1",
-    "typescript": "^3.2.2",
-    "vscode": "^1.1.26"
+    "moment": "^2.24.0"
   }
 }

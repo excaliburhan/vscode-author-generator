@@ -86,6 +86,8 @@ module.exports = {
     return config
   },
   getDate() {
-    return moment().format('YYYY-MM-DD HH:mm:ss')
+    let config = vscode.workspace.getConfiguration('author-generator')
+    let dateFormat = config.get('dateFormat') || 'YYYY-MM-DD HH:mm:ss'
+    return moment().format(dateFormat)
   }
 }
