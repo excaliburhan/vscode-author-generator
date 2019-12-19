@@ -2,7 +2,7 @@
   "name": "vscode-author-generator",
   "displayName": "vscode-author-generator",
   "description": "A Tool To Generate Author Info",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "publisher": "edwardhjp",
   "author": "xiaoping(edwardhjp@gmail.com)",
   "repository": {
@@ -50,6 +50,11 @@
           "type": "string",
           "default": "[example@mail.com]",
           "description": "email address"
+        },
+        "author-generator.dateFormat": {
+          "type": "string",
+          "default": "YYYY-MM-DD HH:mm:ss",
+          "description": "date format string based on moment.js"
         }
       }
     }
