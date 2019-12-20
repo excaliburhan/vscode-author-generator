@@ -2,7 +2,7 @@
   "name": "vscode-author-generator",
   "displayName": "vscode-author-generator",
   "description": "A Tool To Generate Author Info",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "publisher": "edwardhjp",
   "author": "xiaoping(edwardhjp@gmail.com)",
   "repository": {
@@ -66,12 +66,12 @@
     "publish": "vsce publish"
   },
   "devDependencies": {
+    "vscode": "^1.1.36",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.21",
     "eslint": "^6.7.2",
     "mocha": "^6.2.2",
-    "typescript": "^3.7.3",
-    "vscode": "^1.1.36"
+    "typescript": "^3.7.3"
   },
   "dependencies": {
     "moment": "^2.24.0"
