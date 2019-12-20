@@ -1,3 +1,7 @@
+### V0.0.10
+
+- [Feature] add `author-generator.dateFormat` to custom the format of date
+
 ### V0.0.7
 
 - [Feature] add `cmd+u` keybings for quick update
