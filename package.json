@@ -2,7 +2,7 @@
   "name": "vscode-author-generator",
   "displayName": "vscode-author-generator",
   "description": "A Tool To Generate Author Info",
-  "version": "0.1.3",
+  "version": "0.1.6",
   "publisher": "edwardhjp",
   "author": "xiaoping(edwardhjp@gmail.com)",
   "repository": {

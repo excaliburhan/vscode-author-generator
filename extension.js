@@ -18,13 +18,8 @@ function activate(context) {
     generator.updateInfo()
   })
 
-  let updateOnSave = vscode.workspace.onWillSaveTextDocument(() => {
-    generator.updateOnSave()
-  })
-
   context.subscriptions.push(initAuthor)
   context.subscriptions.push(updateAuthor)
-  context.subscriptions.push(updateOnSave)
 }
 
 function deactivate() {}
