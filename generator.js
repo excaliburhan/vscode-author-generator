@@ -1,8 +1,8 @@
 /**
- * @author 燃堂(xiaoping)
- * @email rantang.hjp@alibaba-inc.com
+ * @author xiaoping
+ * @email edwardhjp@gmail.com
  * @create date 2017-02-10 13:10:00
- * @modify date 2020-08-07 11:55:05
+ * @modify date 2020-08-07 13:04:44
  * @desc [generator file]
  */
 
