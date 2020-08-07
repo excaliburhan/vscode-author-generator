@@ -2,7 +2,7 @@
  * @author xiaoping
  * @email edwardhjp@gmail.com
  * @create date 2017-02-13 11:51:32
- * @modify date 2018-12-21 12:37:18
+ * @modify date 2020-08-07 12:09:40
  * @desc [extension file]
  */
 
@@ -18,10 +18,16 @@ function activate(context) {
     generator.updateInfo()
   })
 
+  let updateOnSave = vscode.workspace.onWillSaveTextDocument(() => {
+    generator.updateOnSave()
+  })
+
   context.subscriptions.push(initAuthor)
   context.subscriptions.push(updateAuthor)
+  context.subscriptions.push(updateOnSave)
 }
-exports.activate = activate
 
 function deactivate() {}
+
+exports.activate = activate
 exports.deactivate = deactivate

@@ -2,7 +2,7 @@
  * @author 燃堂(xiaoping)
  * @email rantang.hjp@alibaba-inc.com
  * @create date 2017-02-10 13:10:00
- * @modify date 2018-12-21 12:29:25
+ * @modify date 2020-08-07 11:55:05
  * @desc [generator file]
  */
 
@@ -46,6 +46,22 @@ module.exports = {
       }
     })
   },
+  updateOnSave() {
+    let config = this.getConfig()
+    if (config.updateOnSave) {
+      try {
+        let editor = vscode.window.activeTextEditor
+        let document = editor._documentData._document
+        let fileType = this.getFileType(document)
+        let hasTpl = this.hasTplPath(fileType)
+        if (hasTpl) {
+          this.updateInfo()
+        }
+      } catch (error) {
+        vscode.window.showErrorMessage(error.message)
+      }
+    }
+  },
   getFileType(document) {
     let fileInfo = document.fileName.split('.')
     return fileInfo.length > 1 ? fileInfo.pop() : 'default'
@@ -59,6 +75,15 @@ module.exports = {
     } else {
       return path.join(extDir, 'templates', 'default.tpl')
     }
+  },
+  hasTplPath(type) {
+    type = type.toLowerCase()
+    let extDir = vscode.extensions.getExtension('edwardhjp.vscode-author-generator').extensionPath
+    let extPath = path.join(extDir, 'templates', `${type}.tpl`)
+    if (fs.existsSync(extPath)) {
+      return true
+    }
+    return false
   },
   getTplText(document) {
     let text = ''
@@ -81,7 +106,8 @@ module.exports = {
     config = {
       author: config.get('author'),
       email: config.get('email'),
-      date: this.getDate()
+      date: this.getDate(),
+      updateOnSave: config.get('updateOnSave')
     }
     return config
   },

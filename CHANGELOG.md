@@ -1,3 +1,7 @@
+### V0.0.11
+
+- [Feature] add `author-generator.updateOnSave`, you can trigger updateInfo on save automaticly
+
 ### V0.0.10
 
 - [Feature] add `author-generator.dateFormat` to custom the format of date
