@@ -1,4 +1,4 @@
-### V0.0.11
+### V0.2.0
 
 - [Feature] add `author-generator.updateOnSave`, you can trigger updateInfo on save automaticly
 
