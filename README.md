@@ -18,7 +18,11 @@ Press `F1` in VSCode, type `ext install` and then look for `vscode-author-genera
 
 ### Before Use
 
-- `Preferences` -> `Settings`, add `author-generator.author` and `author-generator.email`. `author-generator.dateFormat` will change your date format(default format is `YYYY-MM-DD HH:mm:ss`)
+- `Preferences` -> `Settings` to add your own settings
+- `author-generator.author` author name, will replace `[author]` in your `*.tpl` file
+- `author-generator.email`. author email, will replace `[email]` in your `*.tpl` file
+- `author-generator.dateFormat` will change your date format(default format is `YYYY-MM-DD HH:mm:ss`)
+- `author-generator.updateOnSave` set `true` to trigger updateInfo on save, only `*.tpl` template files exsit will trigger
 
 ### Commands
 

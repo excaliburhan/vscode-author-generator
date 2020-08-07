@@ -2,7 +2,7 @@
   "name": "vscode-author-generator",
   "displayName": "vscode-author-generator",
   "description": "A Tool To Generate Author Info",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "edwardhjp",
   "author": "xiaoping(edwardhjp@gmail.com)",
   "repository": {
@@ -17,7 +17,8 @@
   ],
   "activationEvents": [
     "onCommand:extension.generateAuthorInfo",
-    "onCommand:extension.updateAuthorInfo"
+    "onCommand:extension.updateAuthorInfo",
+    "onStartupFinished"
   ],
   "main": "./extension",
   "contributes": {
@@ -55,6 +56,11 @@
           "type": "string",
           "default": "YYYY-MM-DD HH:mm:ss",
           "description": "date format string based on moment.js"
+        },
+        "author-generator.updateOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "trigger updateInfo on save"
         }
       }
     }
