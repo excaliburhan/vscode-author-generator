@@ -2,7 +2,7 @@
  * @author xiaoping
  * @email edwardhjp@gmail.com
  * @create date 2017-02-10 13:10:00
- * @modify date 2020-08-07 13:04:44
+ * @modify date 2020-08-16 20:35:38
  * @desc [generator file]
  */
 
@@ -28,7 +28,12 @@ module.exports = {
     let editor = vscode.window.activeTextEditor
     let range = new vscode.Range(new vscode.Position(0, 0), new vscode.Position(21, 0))
     let text = editor.document.getText(range)
-    let modifiedPos = editor.document.positionAt(text.indexOf('@modify date '))
+    let modifyIndex = text.indexOf('@modify date ')
+    let modifiedPos = editor.document.positionAt(modifyIndex)
+    // if there is no @modify date, just return
+    if (modifyIndex === -1) {
+      return
+    }
     let modifiedLine = modifiedPos.line
     let line = editor.document.lineAt(modifiedLine)
     let lineText = line.text

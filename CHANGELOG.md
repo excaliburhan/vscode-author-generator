@@ -1,3 +1,7 @@
+### V0.2.1
+
+- [Feature] updateOnSave will not trigger if there is no `@modify date` string
+
 ### V0.2.0
 
 - [Feature] add `author-generator.updateOnSave`, you can trigger updateInfo on save automaticly
