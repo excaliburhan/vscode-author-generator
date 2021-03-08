@@ -16,7 +16,7 @@ module.exports = {
     let editor = vscode.window.activeTextEditor
     editor.edit((builder) => {
       try {
-        let document = editor._documentData._document
+        let document = editor.document
         let tplText = this.getTplText(document)
         builder.insert(new vscode.Position(0, 0), tplText)
       } catch (error) {
@@ -56,7 +56,7 @@ module.exports = {
     if (config.updateOnSave) {
       try {
         let editor = vscode.window.activeTextEditor
-        let document = editor._documentData._document
+        let document = editor.document
         let fileType = this.getFileType(document)
         let hasTpl = this.hasTplPath(fileType)
         if (hasTpl) {
