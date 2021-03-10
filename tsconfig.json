@@ -13,7 +13,7 @@
     "noImplicitAny": false,
     "esModuleInterop": true,
     "sourceMap": true,
-    "declaration": true
+    "declaration": false
   },
   "lib": ["dom", "esnext"],
   "include": ["src/*.ts", "src/*.js"],
