@@ -2,12 +2,12 @@
  * @author xiaoping
  * @email edwardhjp@gmail.com
  * @create date 2017-02-13 11:51:32
- * @modify date 2020-08-07 13:03:51
+ * @modify date 2021-03-10 16:02:03
  * @desc [extension file]
  */
 
-let vscode = require('vscode');
-let generator = require('./generator.js');
+import * as vscode from 'vscode';
+import generator from './generator';
 
 function activate(context) {
   let initAuthor = vscode.commands.registerCommand('extension.generateAuthorInfo', () => {
@@ -25,7 +25,7 @@ function activate(context) {
 function deactivate() {}
 
 function initUpdateSave() {
-  vscode.workspace.onWillSaveTextDocument(() => {
+  (vscode.workspace as any).onWillSaveTextDocument(() => {
     generator.updateOnSave();
   });
 }

@@ -2,21 +2,21 @@
  * @author xiaoping
  * @email edwardhjp@gmail.com
  * @create date 2017-02-10 13:10:00
- * @modify date 2020-08-16 20:35:38
+ * @modify date 2021-03-10 16:02:24
  * @desc [generator file]
  */
 
-let vscode = require('vscode');
 let path = require('path');
 let fs = require('fs');
-let moment = require('moment');
+import * as vscode from 'vscode';
+import moment from 'moment';
 
-module.exports = {
+export default {
   initInfo() {
     let editor = vscode.window.activeTextEditor;
     editor.edit((builder) => {
       try {
-        let document = editor.document || editor._documentData._document;
+        let document = editor.document || (editor as any)._documentData._document;
         let tplText = this.getTplText(document);
         builder.insert(new vscode.Position(0, 0), tplText);
       } catch (error) {
@@ -56,7 +56,7 @@ module.exports = {
     if (config.updateOnSave) {
       try {
         let editor = vscode.window.activeTextEditor;
-        let document = editor.document || editor._documentData._document;
+        let document = editor.document || (editor as any)._documentData._document;
         let fileType = this.getFileType(document);
         let hasTpl = this.hasTplPath(fileType);
         if (hasTpl) {
@@ -107,7 +107,7 @@ module.exports = {
     return text;
   },
   getConfig() {
-    let config = vscode.workspace.getConfiguration('author-generator');
+    let config: any = vscode.workspace.getConfiguration('author-generator');
     config = {
       author: config.get('author'),
       email: config.get('email'),
@@ -117,7 +117,7 @@ module.exports = {
     return config;
   },
   getDate() {
-    let config = vscode.workspace.getConfiguration('author-generator');
+    let config: any = vscode.workspace.getConfiguration('author-generator');
     let dateFormat = config.get('dateFormat') || 'YYYY-MM-DD HH:mm:ss';
     return moment().format(dateFormat);
   }
