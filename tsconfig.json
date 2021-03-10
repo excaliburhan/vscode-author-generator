@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "outDir": "dist",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": false
+  },
+  "lib": ["dom", "esnext"],
+  "include": ["src/*.ts", "src/*.js"],
+  "exclude": ["node_modules", "dist"]
+}
