@@ -1,3 +1,7 @@
+### V0.2.2
+
+- [Fix] fix vscode document is not found
+
 ### V0.2.1
 
 - [Feature] updateOnSave will not trigger if there is no `@modify date` string

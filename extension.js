@@ -6,31 +6,31 @@
  * @desc [extension file]
  */
 
-let vscode = require('vscode')
-let generator = require('./generator.js')
+let vscode = require('vscode');
+let generator = require('./generator.js');
 
 function activate(context) {
   let initAuthor = vscode.commands.registerCommand('extension.generateAuthorInfo', () => {
-    generator.initInfo()
-  })
+    generator.initInfo();
+  });
 
   let updateAuthor = vscode.commands.registerCommand('extension.updateAuthorInfo', () => {
-    generator.updateInfo()
-  })
+    generator.updateInfo();
+  });
 
-  context.subscriptions.push(initAuthor)
-  context.subscriptions.push(updateAuthor)
+  context.subscriptions.push(initAuthor);
+  context.subscriptions.push(updateAuthor);
 }
 
 function deactivate() {}
 
-function initUpdateSave () {
+function initUpdateSave() {
   vscode.workspace.onWillSaveTextDocument(() => {
-    generator.updateOnSave()
-  })
+    generator.updateOnSave();
+  });
 }
 
-initUpdateSave()
+initUpdateSave();
 
-exports.activate = activate
-exports.deactivate = deactivate
+exports.activate = activate;
+exports.deactivate = deactivate;

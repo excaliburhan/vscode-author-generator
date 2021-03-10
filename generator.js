@@ -6,119 +6,119 @@
  * @desc [generator file]
  */
 
-let vscode = require('vscode')
-let path = require('path')
-let fs = require('fs')
-let moment = require('moment')
+let vscode = require('vscode');
+let path = require('path');
+let fs = require('fs');
+let moment = require('moment');
 
 module.exports = {
   initInfo() {
-    let editor = vscode.window.activeTextEditor
+    let editor = vscode.window.activeTextEditor;
     editor.edit((builder) => {
       try {
-        let document = editor._documentData._document
-        let tplText = this.getTplText(document)
-        builder.insert(new vscode.Position(0, 0), tplText)
+        let document = editor.document || editor._documentData._document;
+        let tplText = this.getTplText(document);
+        builder.insert(new vscode.Position(0, 0), tplText);
       } catch (error) {
-        vscode.window.showErrorMessage(error.message)
+        vscode.window.showErrorMessage(error.message);
       }
-    })
+    });
   },
   updateInfo() {
-    let editor = vscode.window.activeTextEditor
-    let range = new vscode.Range(new vscode.Position(0, 0), new vscode.Position(21, 0))
-    let text = editor.document.getText(range)
-    let modifyIndex = text.indexOf('@modify date ')
-    let modifiedPos = editor.document.positionAt(modifyIndex)
+    let editor = vscode.window.activeTextEditor;
+    let range = new vscode.Range(new vscode.Position(0, 0), new vscode.Position(21, 0));
+    let text = editor.document.getText(range);
+    let modifyIndex = text.indexOf('@modify date ');
+    let modifiedPos = editor.document.positionAt(modifyIndex);
     // if there is no @modify date, just return
     if (modifyIndex === -1) {
-      return
+      return;
     }
-    let modifiedLine = modifiedPos.line
-    let line = editor.document.lineAt(modifiedLine)
-    let lineText = line.text
-    let lineTextArr = lineText.split('@modify date ')
-    let replaceText = ''
+    let modifiedLine = modifiedPos.line;
+    let line = editor.document.lineAt(modifiedLine);
+    let lineText = line.text;
+    let lineTextArr = lineText.split('@modify date ');
+    let replaceText = '';
     for (let i = 0; i < lineTextArr.length - 1; i++) {
-      replaceText += lineTextArr[i]
+      replaceText += lineTextArr[i];
     }
-    replaceText += '@modify date ' + this.getDate()
+    replaceText += '@modify date ' + this.getDate();
     editor.edit((builder) => {
       try {
-        builder.replace(line.range, replaceText)
+        builder.replace(line.range, replaceText);
       } catch (error) {
-        vscode.window.showErrorMessage(error.message)
+        vscode.window.showErrorMessage(error.message);
       }
-    })
+    });
   },
   updateOnSave() {
-    let config = this.getConfig()
+    let config = this.getConfig();
     if (config.updateOnSave) {
       try {
-        let editor = vscode.window.activeTextEditor
-        let document = editor._documentData._document
-        let fileType = this.getFileType(document)
-        let hasTpl = this.hasTplPath(fileType)
+        let editor = vscode.window.activeTextEditor;
+        let document = editor.document || editor._documentData._document;
+        let fileType = this.getFileType(document);
+        let hasTpl = this.hasTplPath(fileType);
         if (hasTpl) {
-          this.updateInfo()
+          this.updateInfo();
         }
       } catch (error) {
-        vscode.window.showErrorMessage(error.message)
+        vscode.window.showErrorMessage(error.message);
       }
     }
   },
   getFileType(document) {
-    let fileInfo = document.fileName.split('.')
-    return fileInfo.length > 1 ? fileInfo.pop() : 'default'
+    let fileInfo = document.fileName.split('.');
+    return fileInfo.length > 1 ? fileInfo.pop() : 'default';
   },
   getTplPath(type) {
-    type = type.toLowerCase()
-    let extDir = vscode.extensions.getExtension('edwardhjp.vscode-author-generator').extensionPath
-    let extPath = path.join(extDir, 'templates', `${type}.tpl`)
+    type = type.toLowerCase();
+    let extDir = vscode.extensions.getExtension('edwardhjp.vscode-author-generator').extensionPath;
+    let extPath = path.join(extDir, 'templates', `${type}.tpl`);
     if (fs.existsSync(extPath)) {
-      return extPath
+      return extPath;
     } else {
-      return path.join(extDir, 'templates', 'default.tpl')
+      return path.join(extDir, 'templates', 'default.tpl');
     }
   },
   hasTplPath(type) {
-    type = type.toLowerCase()
-    let extDir = vscode.extensions.getExtension('edwardhjp.vscode-author-generator').extensionPath
-    let extPath = path.join(extDir, 'templates', `${type}.tpl`)
+    type = type.toLowerCase();
+    let extDir = vscode.extensions.getExtension('edwardhjp.vscode-author-generator').extensionPath;
+    let extPath = path.join(extDir, 'templates', `${type}.tpl`);
     if (fs.existsSync(extPath)) {
-      return true
+      return true;
     }
-    return false
+    return false;
   },
   getTplText(document) {
-    let text = ''
-    let config = this.getConfig()
-    let type = this.getFileType(document)
-    let tplPath = this.getTplPath(type)
+    let text = '';
+    let config = this.getConfig();
+    let type = this.getFileType(document);
+    let tplPath = this.getTplPath(type);
     try {
-      text = fs.readFileSync(tplPath, 'utf-8')
+      text = fs.readFileSync(tplPath, 'utf-8');
       text = text
         .replace(/\[author\]/, config.author)
         .replace(/\[email\]/, config.email)
-        .replace(/\[date\]/g, config.date)
+        .replace(/\[date\]/g, config.date);
     } catch (error) {
-      vscode.window.showErrorMessage(error.message)
+      vscode.window.showErrorMessage(error.message);
     }
-    return text
+    return text;
   },
   getConfig() {
-    let config = vscode.workspace.getConfiguration('author-generator')
+    let config = vscode.workspace.getConfiguration('author-generator');
     config = {
       author: config.get('author'),
       email: config.get('email'),
       date: this.getDate(),
       updateOnSave: config.get('updateOnSave')
-    }
-    return config
+    };
+    return config;
   },
   getDate() {
-    let config = vscode.workspace.getConfiguration('author-generator')
-    let dateFormat = config.get('dateFormat') || 'YYYY-MM-DD HH:mm:ss'
-    return moment().format(dateFormat)
+    let config = vscode.workspace.getConfiguration('author-generator');
+    let dateFormat = config.get('dateFormat') || 'YYYY-MM-DD HH:mm:ss';
+    return moment().format(dateFormat);
   }
-}
+};
