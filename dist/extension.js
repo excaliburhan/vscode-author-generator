@@ -5706,7 +5706,7 @@ var generator = {
     let range = new vscode.Range(new vscode.Position(0, 0), new vscode.Position(21, 0));
     let text = editor.document.getText(range);
     let modifyIndex = text.indexOf('@lastModifiedOn : ');
-    let modifiedPos = editor.document.positionAt(modifyIndex); // if there is no @lastModifiedOn : , just return
+    let modifiedPos = editor.document.positionAt(modifyIndex); // if there is no @lastModifiedOn : ,then just return
 
     if (modifyIndex === -1) {
       return;
