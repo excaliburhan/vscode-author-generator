@@ -5705,8 +5705,8 @@ var generator = {
     let editor = vscode.window.activeTextEditor;
     let range = new vscode.Range(new vscode.Position(0, 0), new vscode.Position(21, 0));
     let text = editor.document.getText(range);
-    let modifyIndex = text.indexOf('@modify date ');
-    let modifiedPos = editor.document.positionAt(modifyIndex); // if there is no @modify date, just return
+    let modifyIndex = text.indexOf('@lastModifiedOn : ');
+    let modifiedPos = editor.document.positionAt(modifyIndex); // if there is no @lastModifiedOn : , just return
 
     if (modifyIndex === -1) {
       return;
@@ -5715,14 +5715,14 @@ var generator = {
     let modifiedLine = modifiedPos.line;
     let line = editor.document.lineAt(modifiedLine);
     let lineText = line.text;
-    let lineTextArr = lineText.split('@modify date ');
+    let lineTextArr = lineText.split('      @lastModifiedOn : ');
     let replaceText = '';
 
     for (let i = 0; i < lineTextArr.length - 1; i++) {
       replaceText += lineTextArr[i];
     }
 
-    replaceText += '@modify date ' + this.getDate();
+    replaceText += '      @lastModifiedOn : ' + this.getDate();
     editor.edit(builder => {
       try {
         builder.replace(line.range, replaceText);
